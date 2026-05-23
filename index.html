@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badminton Buddies</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="brand-header">
+      <div class="brand-mark" aria-hidden="true">🏸</div>
+      <div>
+        <p class="brand-kicker">Racket + Shuttle Match Day</p>
+        <h1>Badminton Buddies</h1>
+      </div>
+    </header>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Doubles rotation</p>
+        <h2>Badminton Match Setter</h2>
+      </div>
+      <div class="today-card">
+        <span id="todayLabel">Today</span>
+        <strong id="matchCount">0 matches</strong>
+      </div>
+    </header>
+
+    <section class="setup-panel" id="setupPanel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">6 members</p>
+          <h2>Player setup</h2>
+        </div>
+        <button class="ghost-button" id="sampleNamesButton" type="button">Sample names</button>
+      </div>
+      <form id="playerForm" class="player-form">
+        <label>
+          Player 1
+          <input required maxlength="24" name="player" value="Player 1">
+        </label>
+        <label>
+          Player 2
+          <input required maxlength="24" name="player" value="Player 2">
+        </label>
+        <label>
+          Player 3
+          <input required maxlength="24" name="player" value="Player 3">
+        </label>
+        <label>
+          Player 4
+          <input required maxlength="24" name="player" value="Player 4">
+        </label>
+        <label>
+          Player 5
+          <input required maxlength="24" name="player" value="Player 5">
+        </label>
+        <label>
+          Player 6
+          <input required maxlength="24" name="player" value="Player 6">
+        </label>
+        <div class="form-actions">
+          <button class="primary-button" type="submit">Start today</button>
+          <button class="danger-button" id="clearTodayButton" type="button">Clear today</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="match-grid">
+      <article class="match-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Current game</p>
+            <h2 id="currentMatchTitle">Match not started</h2>
+          </div>
+          <button class="ghost-button" id="nextMatchButton" type="button" disabled>Set next</button>
+        </div>
+
+        <div class="court" id="court">
+          <div class="team team-a">
+            <span class="team-label">Team A</span>
+            <h3 id="teamAPlayers">-</h3>
+            <button class="score-button" id="scoreAButton" type="button" disabled>
+              <span id="scoreA">0</span>
+              <small>+ point</small>
+            </button>
+          </div>
+          <div class="net-line">21</div>
+          <div class="team team-b">
+            <span class="team-label">Team B</span>
+            <h3 id="teamBPlayers">-</h3>
+            <button class="score-button" id="scoreBButton" type="button" disabled>
+              <span id="scoreB">0</span>
+              <small>+ point</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="match-actions">
+          <button class="ghost-button" id="undoButton" type="button" disabled>Undo point</button>
+          <button class="ghost-button" id="swapButton" type="button" disabled>Swap sides</button>
+          <button class="primary-button" id="finishButton" type="button" disabled>Finish match</button>
+        </div>
+
+        <div class="rotation-note" id="rotationNote">
+          Enter six players and start the day.
+        </div>
+
+        <div class="winner-celebration" id="winnerCelebration" hidden>
+          <p class="eyebrow">Match winner</p>
+          <h3 id="winnerTitle">Team A won</h3>
+          <strong id="winnerNames">Player 1 / Player 2</strong>
+          <span id="winnerScore">21 - 0</span>
+        </div>
+      </article>
+
+      <aside class="standings-panel">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Members map</p>
+            <h2>Today</h2>
+          </div>
+          <button class="ghost-button" id="exportButton" type="button" disabled>Export CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Games</th>
+                <th>W</th>
+                <th>L</th>
+                <th>Streak</th>
+              </tr>
+            </thead>
+            <tbody id="memberTable">
+              <tr><td colspan="5">No games yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </aside>
+    </section>
+
+    <section class="history-panel">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Saved scores</p>
+          <h2>Today's game score table</h2>
+        </div>
+      </div>
+      <div class="table-wrap wide">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Team A</th>
+              <th>Score</th>
+              <th>Team B</th>
+              <th>Winner</th>
+              <th>Rested</th>
+              <th>Time</th>
+            </tr>
+          </thead>
+          <tbody id="historyTable">
+            <tr><td colspan="7">Finished matches will be stored here for today.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
